@@ -1,0 +1,78 @@
+1: Wei F, Lin Z, Lu W, Luo H, Feng H, Liu S, Zhang C, Zheng Y, Chen J, Mo S,
+Wang C, Zhang Z, Feng W, Zhu J, Yang Q, Du M, Kong W, Liu A, Lai J, Li X, Wu X,
+Lai N, Chen Y, Yang K, Wang J. Deficiency of Endothelial <i>Piezo2</i> Impairs
+Pulmonary Vascular Angiogenesis and Predisposes Pulmonary Hypertension.
+Hypertension. 2025 Apr;82(4):583-597. doi: 10.1161/HYPERTENSIONAHA.124.22948.
+Epub 2025 Jan 6. PMID: 39758000.
+
+2: Chen Y, He W, Lu W, Xing Y, Bai J, Yu H, Zhou J, Liang J, Chen J, Hou C,
+Zhong B, Wang T, Feng H, Chen X, Wang T, Yang K, Zhang N, Zhong N, Liu C, Wang
+J. Bufei huoxue capsules in the management of convalescent COVID-19 infection:
+study protocol for a multicenter, double-blind, and randomized controlled trial.
+Pulm Circ. 2021 Aug 3;11(3):20458940211032125. doi: 10.1177/20458940211032125.
+PMID: 34394913; PMCID: PMC8351033.
+
+3: Liao J, Lu W, Chen Y, Duan X, Zhang C, Luo X, Lin Z, Chen J, Liu S, Yan H,
+Chen Y, Feng H, Zhou D, Chen X, Zhang Z, Yang Q, Liu X, Tang H, Li J, Makino A,
+Yuan JX, Zhong N, Yang K, Wang J. Upregulation of Piezo1 (Piezo Type
+Mechanosensitive Ion Channel Component 1) Enhances the Intracellular Free
+Calcium in Pulmonary Arterial Smooth Muscle Cells From Idiopathic Pulmonary
+Arterial Hypertension Patients. Hypertension. 2021 Jun;77(6):1974-1989. doi:
+10.1161/HYPERTENSIONAHA.120.16629. Epub 2021 Apr 5. PMID: 33813851.
+
+4: Kuang M, Chen Y, Xing Y, Du M, Feng H, Yang Q, Wen D, Li X, Yang K, Lin Z,
+Lai N, Jiang Q, Liu S, Zhou D, Hong W, Fu X, Lu W, Zhao T, Wang J, Chen Y.
+Echocardiographic evaluation of right heart failure which might be associated
+with DNA damage response in SU5416-hypoxia induced pulmonary hypertension rat
+model. Respir Res. 2023 Aug 17;24(1):202. doi: 10.1186/s12931-023-02501-7. PMID:
+37592245; PMCID: PMC10433698.
+
+5: Shan X, Gegentuya, Wang J, Feng H, Zhang Z, Zheng Q, Zhang Q, Yang K, Wang J,
+Xu L. Aloperine protects pulmonary hypertension via triggering PPARγ signaling
+and inhibiting calcium regulatory pathway in pulmonary arterial smooth muscle
+cells. Am J Physiol Cell Physiol. 2023 Oct 1;325(4):C1058-C1072. doi:
+10.1152/ajpcell.00286.2023. Epub 2023 Sep 4. PMID: 37661916.
+
+6: Chen J, Zhou D, Miao J, Zhang C, Li X, Feng H, Xing Y, Zhang Z, Bao C, Lin Z,
+Chen Y, Yuan JX, Sun D, Yang K, Wang J. Microbiome and metabolome dysbiosis of
+the gut-lung axis in pulmonary hypertension. Microbiol Res. 2022 Dec;265:127205.
+doi: 10.1016/j.micres.2022.127205. Epub 2022 Sep 21. PMID: 36202007.
+
+7: Zhou D, Wang EW, Hou C, Liao J, Zhang J, Fu X, Chen J, Xing Y, Hong W, Zhang
+Z, Chen Y, Feng H, Chen Y, Yang Q, Zhang H, Li Z, Feng W, Wang T, Lin Z, Zhang
+C, Yang K, Lu W, Wang J, Chen Y. Visibility, wind speed, and dew point
+temperature are important factors in SARS-CoV-2 transmissibility. Pulm Circ.
+2022 Apr 20;12(2):e12081. doi: 10.1002/pul2.12081. PMID: 35514785; PMCID:
+PMC9063952.
+
+8: Zhang C, Zhang T, Lu W, Duan X, Luo X, Liu S, Chen Y, Li Y, Chen J, Liao J,
+Zhou D, Chen X, Feng H, Gu G, Wang T, Tang H, Makino A, Zhong N, Yuan JX, Yang
+K, Wang J. Altered Airway Microbiota Composition in Patients With Pulmonary
+Hypertension. Hypertension. 2020 Nov;76(5):1589-1599. doi:
+10.1161/HYPERTENSIONAHA.120.15025. Epub 2020 Sep 14. PMID: 32921193.
+
+9: Jiang Q, Yang Q, Zhang C, Hou C, Hong W, Du M, Shan X, Li X, Zhou D, Wen D,
+Xiong Y, Yang K, Lin Z, Song J, Mo Z, Feng H, Xing Y, Fu X, Liu C, Peng F, Wu L,
+Li B, Lu W, Yuan JX, Wang J, Chen Y. Nephrectomy and high-salt diet inducing
+pulmonary hypertension and kidney damage by increasing Ang II concentration in
+rats. Respir Res. 2024 Jul 30;25(1):288. doi: 10.1186/s12931-024-02916-w. PMID:
+39080603; PMCID: PMC11290206.
+
+10: Huang J, Qiu Z, Zhou P, Li J, Chen Y, Huang R, Li C, Ouyang X, Feng H, Xu H,
+Liu D, Dai Z, Zhu J, Liu X, Chen H, Jiang Y. Topographic location of unisolated
+pontine infarction. BMC Neurol. 2019 Aug 5;19(1):186. doi:
+10.1186/s12883-019-1411-6. PMID: 31382915; PMCID: PMC6681487.
+
+11: Yang K, Liu S, Yan H, Lu W, Shan X, Chen H, Bao C, Feng H, Liao J, Liang S,
+Xu L, Tang H, Yuan JX, Zhong N, Wang J. SARS-CoV-2 spike protein receptor-
+binding domain perturbates intracellular calcium homeostasis and impairs
+pulmonary vascular endothelial cells. Signal Transduct Target Ther. 2023 Jul
+14;8(1):276. doi: 10.1038/s41392-023-01556-8. PMID: 37452066; PMCID:
+PMC10349149.
+
+12: Liu S, Shan X, Sun Y, Chen H, Feng H, Mo S, Bao C, Zhu J, Zhang Z, Wei F,
+Bai X, Xu R, Lai J, Luo H, Zhang C, Luo X, Jiang Q, Chen Y, Zhou Y, Tang H, Xu
+L, Lu W, Guo R, Liu C, Yang Z, Yuan JX, Xu X, Xu D, Wang J, Yang K. Deficient
+FANCL Predisposes to Endothelial Damage: A New Therapeutic Target for Pulmonary
+Hypertension. Am J Respir Crit Care Med. 2025 Aug;211(8):1474-1491. doi:
+10.1164/rccm.202408-1655OC. PMID: 40479584.

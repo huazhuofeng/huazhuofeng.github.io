@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog · Huazhuo Feng — MD, Researcher in Pulmonary Hypertension</title>
+<meta name="description" content="Academic homepage and blog for Huazhuofeng.">
+<meta property="og:title" content="Blog · Huazhuo Feng — MD, Researcher in Pulmonary Hypertension">
+<meta property="og:description" content="Academic homepage and blog for Huazhuofeng.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:4000/blog/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<!-- Prism.js for syntax highlighting (macOS Terminal style) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ruby.min.js"></script>
+<script>
+  (function () {
+    try {
+      const storedTheme = localStorage.getItem('preferred-theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = storedTheme || (systemDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (error) {
+      console.warn('Theme init errored', error);
+    }
+  })();
+</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+
+  </head>
+  <body class="layout-blog_index">
+    <div class="site-shell">
+      <header class="site-header">
+  <nav class="site-nav">
+  <div class="nav-brand">
+    <a href="/" class="brand">
+      <span class="brand-title">Huazhuo Feng</span>
+      <span class="brand-subtitle">MD · PhD Candidate</span>
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#publications">Publications</a>
+    <a href="/#contact">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn" data-theme-toggle aria-label="Toggle theme">🌙 / ☀️</button>
+  </div>
+</nav>
+
+</header>
+
+      <div class="site-body">
+        <main class="main-column">
+          <section class="hero-section blog-hero">
+  <p class="hero-kicker">Blog</p>
+  <h1>Field notes, tutorials, and project updates</h1>
+  <p class="hero-lead">Capturing experiments in single-cell biology, reproducible research, and data tooling.</p>
+</section>
+<section class="content-section" aria-label="Blog posts">
+  <div class="section-header">
+    <h2>Latest posts</h2>
+    <p class="muted">Entries are sorted newest first. Tags, search, and archives will be added soon.</p>
+  </div>
+  <div class="cards-grid blog-grid">
+    
+      <article class="card blog-card">
+        <header>
+          <p class="muted small">2026-01-22</p>
+          <h3><a href="/blog/2026/01/22/signal-integration/">Signal integration in reproducible single-cell workflows</a></h3>
+        </header>
+        <p class="muted">Planning and building pipelines that allow teams to reproduce single-cell experiments end-to-end.</p>
+        <div class="card-actions">
+          <a class="link-pill" href="/blog/2026/01/22/signal-integration/">Read</a>
+          
+            <div class="meta-chip-group">
+              
+                <span class="meta-chip">single-cell</span>
+              
+                <span class="meta-chip">reproducibility</span>
+              
+                <span class="meta-chip">workflows</span>
+              
+            </div>
+          
+        </div>
+      </article>
+    
+      <article class="card blog-card">
+        <header>
+          <p class="muted small">2026-01-22</p>
+          <h3><a href="/blog/2026/01/22/mihomo-proxy-setup/">Mihomo 代理配置与 Shell 集成指南</a></h3>
+        </header>
+        <p class="muted">在 WSL/Linux 环境下配置 Mihomo 代理，实现一键切换节点、自动代理等便捷功能。</p>
+        <div class="card-actions">
+          <a class="link-pill" href="/blog/2026/01/22/mihomo-proxy-setup/">Read</a>
+          
+            <div class="meta-chip-group">
+              
+                <span class="meta-chip">proxy</span>
+              
+                <span class="meta-chip">mihomo</span>
+              
+                <span class="meta-chip">shell</span>
+              
+                <span class="meta-chip">wsl</span>
+              
+            </div>
+          
+        </div>
+      </article>
+    
+      <article class="card blog-card">
+        <header>
+          <p class="muted small">2026-01-22</p>
+          <h3><a href="/blog/2026/01/22/cursor-server-deploy/">Cursor Remote-SSH Server 手动部署工具</a></h3>
+        </header>
+        <p class="muted">解决 Cursor Remote-SSH Server 下载失败/缓慢的问题，支持代理下载、版本管理和自动回滚。</p>
+        <div class="card-actions">
+          <a class="link-pill" href="/blog/2026/01/22/cursor-server-deploy/">Read</a>
+          
+            <div class="meta-chip-group">
+              
+                <span class="meta-chip">cursor</span>
+              
+                <span class="meta-chip">remote-ssh</span>
+              
+                <span class="meta-chip">deployment</span>
+              
+                <span class="meta-chip">proxy</span>
+              
+            </div>
+          
+        </div>
+      </article>
+    
+  </div>
+</section>
+
+        </main>
+        <aside class="site-sidebar">
+  <div class="sidebar-card">
+    <div class="avatar-ring">
+      <span class="avatar-letter">H</span>
+    </div>
+    <h3>Huazhuo Feng</h3>
+    <p class="muted">MD · PhD Candidate</p>
+    <p class="muted">Guangzhou Medical University</p>
+    <div class="meta-tags">
+      
+        <span class="tag">Pulmonary Hypertension</span>
+      
+        <span class="tag">Single-cell Omics</span>
+      
+        <span class="tag">Spatial Omics</span>
+      
+    </div>
+    <div class="contact-links">
+      <a href="mailto:dotorfhz@163.com">dotorfhz@163.com</a>
+    </div>
+  </div>
+  <div class="sidebar-card">
+    <h4>🔗 Quick Links</h4>
+    <ul class="nav-list">
+      
+        <li><a href="https://scholar.google.com">Google Scholar</a></li>
+      
+        <li><a href="https://orcid.org/">ORCID</a></li>
+      
+        <li><a href="https://github.com">GitHub</a></li>
+      
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h4>🔍 Search</h4>
+    <label class="search-field">
+      <input type="search" placeholder="Search blog posts">
+      <span class="muted">Search coming soon</span>
+    </label>
+  </div>
+  <div class="sidebar-card">
+    <h4>📬 Subscribe</h4>
+    <p class="muted">RSS + email updates coming soon.</p>
+    <div class="subscriber-line">
+      <a href="/feed.xml" class="pill">RSS</a>
+      <span class="muted">+ future newsletter</span>
+    </div>
+  </div>
+</aside>
+
+      </div>
+      <footer class="site-footer">
+  <div class="footer-content">
+    <p>Huazhuo Feng · Academic Homepage & Blog</p>
+    <p>Built with Jekyll · Light/Dark Theme Toggle</p>
+  </div>
+</footer>
+
+    </div>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+name: "Huazhuo Feng"
+title: "MD · PhD Candidate"
+subtitle: "Researcher in Pulmonary Hypertension"
+affiliation: "Guangzhou Medical University"
+email: "dotorfhz@163.com"
+interests:
+  - "Pulmonary Hypertension"
+  - "Single-cell Omics"
+  - "Spatial Omics"
+directions:
+  - "Pulmonary Hypertension"
+  - "Single-cell Omics"
+  - "Spatial Omics"
+links:
+  - label: "Google Scholar"
+    url: "https://scholar.google.com"
+  - label: "ORCID"
+    url: "https://orcid.org/"
+  - label: "GitHub"
+    url: "https://github.com"

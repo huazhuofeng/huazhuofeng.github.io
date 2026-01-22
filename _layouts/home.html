@@ -1,0 +1,101 @@
+---
+layout: default
+---
+<div class="hero-section">
+  <p class="hero-kicker">MD · PhD Candidate · Guangzhou Medical University</p>
+  <h1>Huazhuo Feng</h1>
+  <p class="hero-lead">Focusing on pulmonary hypertension, single-cell omics, and spatial omics research.</p>
+  <div class="hero-actions">
+    <a class="hero-cta" href="{{ '/blog/' | relative_url }}">Enter Blog</a>
+    <a class="hero-ghost" href="mailto:{{ site.data.profile.email }}">Contact</a>
+  </div>
+  <div class="hero-statistics">
+    <div>
+      <span class="stat-label">Research Interests</span>
+      <div class="stat-value">
+        {% for interest in site.data.profile.interests %}
+          <span class="meta-chip">{{ interest }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div>
+      <span class="stat-label">Recent Publications</span>
+      <div class="stat-value">
+        {% assign sorted_pubs = site.data.publications | sort: 'year' | reverse %}
+        {% for pub in sorted_pubs limit:3 %}
+          <span class="meta-chip">{{ pub.year }} · {{ pub.venue }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<section class="content-section" id="publications">
+  <header class="section-header">
+    <h2>Representative Research</h2>
+    <p class="muted">Selected publications highlighting key research contributions.</p>
+  </header>
+  <div class="cards-grid">
+    {% for pub in site.data.publications %}
+      {% if pub.featured %}
+        <article class="card">
+          <h3>{{ pub.title }}</h3>
+          <p class="muted authors">{{ pub.authors }}</p>
+          <p class="muted small">{{ pub.venue }} · {{ pub.year }}</p>
+          <div class="card-actions">
+            {% if pub.links.pdf %}
+              <a href="{{ pub.links.pdf }}" class="link-pill" target="_blank">PDF</a>
+            {% endif %}
+            {% if pub.links.pubmed %}
+              <a href="{{ pub.links.pubmed }}" class="link-pill" target="_blank">PubMed</a>
+            {% endif %}
+            {% if pub.links.code %}
+              <a href="{{ pub.links.code }}" class="link-pill" target="_blank">Code</a>
+            {% endif %}
+          </div>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <a href="{{ '/publications/' | relative_url }}" class="hero-ghost">View All Publications →</a>
+  </div>
+</section>
+<section class="content-section" id="news">
+  <header class="section-header">
+    <h2>News & Updates</h2>
+    <p class="muted">Sharing lab milestones and new publications.</p>
+  </header>
+  <div class="list-stack">
+    {% for item in site.data.news %}
+      <article class="list-item">
+        <div class="list-item-main">
+          <p class="muted small">{{ item.date }}</p>
+          <p>{{ item.text }}</p>
+        </div>
+        {% if item.link %}
+          <a class="link-pill" href="{{ item.link }}">Details</a>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</section>
+<section class="content-section" id="contact">
+  <header class="section-header">
+    <h2>Connect</h2>
+    <p class="muted">Let's talk about collaboration, open positions, or papers.</p>
+  </header>
+  <div class="contact-grid">
+    <div>
+      <p class="section-label">Email</p>
+      <a href="mailto:{{ site.data.profile.email }}">{{ site.data.profile.email }}</a>
+    </div>
+    <div>
+      <p class="section-label">Links</p>
+      <ul>
+        {% for link in site.data.profile.links %}
+          <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

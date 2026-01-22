@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<section class="hero-section blog-hero">
+  <p class="hero-kicker">Publications</p>
+  <h1>Research Publications</h1>
+  <p class="hero-lead">Complete list of published research work.</p>
+</section>
+<section class="content-section" aria-label="All publications">
+  <div class="publications-list">
+    {% for pub in site.data.publications %}
+      <article class="publication-item">
+        <h3>{{ pub.title }}</h3>
+        <p class="muted authors">{{ pub.authors }}</p>
+        <p class="muted small">{{ pub.venue }} · {{ pub.year }}{% if pub.volume %}, {{ pub.volume }}{% endif %}{% if pub.issue %}({{ pub.issue }}){% endif %}{% if pub.pages %}, {{ pub.pages }}{% endif %}</p>
+        {% if pub.doi %}
+          <p class="muted small">DOI: <a href="https://doi.org/{{ pub.doi }}" target="_blank">{{ pub.doi }}</a></p>
+        {% endif %}
+        <div class="card-actions">
+          {% if pub.links.pdf %}
+            <a href="{{ pub.links.pdf }}" class="link-pill" target="_blank">PDF</a>
+          {% endif %}
+          {% if pub.links.pubmed %}
+            <a href="{{ pub.links.pubmed }}" class="link-pill" target="_blank">PubMed</a>
+          {% endif %}
+          {% if pub.links.code %}
+            <a href="{{ pub.links.code }}" class="link-pill" target="_blank">Code</a>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

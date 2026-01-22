@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang }}" data-theme="light">
+  <head>
+    {% include head.html %}
+  </head>
+  <body class="layout-{{ page.layout }}">
+    <div class="site-shell">
+      {% include header.html %}
+      <div class="site-body">
+        <main class="main-column">
+          {{ content }}
+        </main>
+        {% include sidebar.html %}
+      </div>
+      {% include footer.html %}
+    </div>
+    <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  </body>
+</html>

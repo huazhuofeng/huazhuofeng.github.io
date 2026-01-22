@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<section class="hero-section blog-hero">
+  <p class="hero-kicker">Blog</p>
+  <h1>Field notes, tutorials, and project updates</h1>
+  <p class="hero-lead">Capturing experiments in single-cell biology, reproducible research, and data tooling.</p>
+</section>
+<section class="content-section" aria-label="Blog posts">
+  <div class="section-header">
+    <h2>Latest posts</h2>
+    <p class="muted">Entries are sorted newest first. Tags, search, and archives will be added soon.</p>
+  </div>
+  <div class="cards-grid blog-grid">
+    {% for post in site.posts %}
+      <article class="card blog-card">
+        <header>
+          <p class="muted small">{{ post.date | date: "%Y-%m-%d" }}</p>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        </header>
+        <p class="muted">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+        <div class="card-actions">
+          <a class="link-pill" href="{{ post.url | relative_url }}">Read</a>
+          {% if post.tags %}
+            <div class="meta-chip-group">
+              {% for tag in post.tags %}
+                <span class="meta-chip">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

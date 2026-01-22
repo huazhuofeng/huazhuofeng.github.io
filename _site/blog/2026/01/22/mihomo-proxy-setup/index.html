@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mihomo 代理配置与 Shell 集成指南 · Huazhuo Feng — MD, Researcher in Pulmonary Hypertension</title>
+<meta name="description" content="在 WSL/Linux 环境下配置 Mihomo 代理，实现一键切换节点、自动代理等便捷功能。">
+<meta property="og:title" content="Mihomo 代理配置与 Shell 集成指南 · Huazhuo Feng — MD, Researcher in Pulmonary Hypertension">
+<meta property="og:description" content="在 WSL/Linux 环境下配置 Mihomo 代理，实现一键切换节点、自动代理等便捷功能。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:4000/blog/2026/01/22/mihomo-proxy-setup/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<!-- Prism.js for syntax highlighting (macOS Terminal style) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ruby.min.js"></script>
+<script>
+  (function () {
+    try {
+      const storedTheme = localStorage.getItem('preferred-theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = storedTheme || (systemDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (error) {
+      console.warn('Theme init errored', error);
+    }
+  })();
+</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+
+  </head>
+  <body class="layout-post">
+    <div class="site-shell">
+      <header class="site-header">
+  <nav class="site-nav">
+  <div class="nav-brand">
+    <a href="/" class="brand">
+      <span class="brand-title">Huazhuo Feng</span>
+      <span class="brand-subtitle">MD · PhD Candidate</span>
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#publications">Publications</a>
+    <a href="/#contact">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn" data-theme-toggle aria-label="Toggle theme">🌙 / ☀️</button>
+  </div>
+</nav>
+
+</header>
+
+      <div class="site-body">
+        <main class="main-column">
+          <article class="content-section blog-post">
+  <header class="post-header">
+    <p class="muted small">2026-01-22</p>
+    <h1>Mihomo 代理配置与 Shell 集成指南</h1>
+    
+    
+      <div class="meta-chip-group">
+        
+          <span class="meta-chip">proxy</span>
+        
+          <span class="meta-chip">mihomo</span>
+        
+          <span class="meta-chip">shell</span>
+        
+          <span class="meta-chip">wsl</span>
+        
+      </div>
+    
+  </header>
+  <div class="post-body">
+    <h2 id="项目简介">项目简介</h2>
+
+<p>Mihomo 是一个功能强大的代理工具，通过 Shell 集成可以实现便捷的命令行代理管理。本教程介绍如何在 WSL/Linux 环境下配置 Mihomo，并提供完整的 Shell 函数实现。</p>
+
+<hr />
+
+<h2 id="核心功能">核心功能</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>功能</th>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>启动/停止</td>
+      <td><code class="language-plaintext highlighter-rouge">mihomo-start</code> / <code class="language-plaintext highlighter-rouge">mihomo-stop</code></td>
+      <td>控制守护进程</td>
+    </tr>
+    <tr>
+      <td>代理开关</td>
+      <td><code class="language-plaintext highlighter-rouge">proxy-on</code> / <code class="language-plaintext highlighter-rouge">proxy-off</code></td>
+      <td>启用/禁用系统代理</td>
+    </tr>
+    <tr>
+      <td>状态查看</td>
+      <td><code class="language-plaintext highlighter-rouge">proxy-status</code></td>
+      <td>显示当前代理状态</td>
+    </tr>
+    <tr>
+      <td>节点切换</td>
+      <td><code class="language-plaintext highlighter-rouge">proxy-select jp</code></td>
+      <td>切换到指定国家节点</td>
+    </tr>
+    <tr>
+      <td>节点列表</td>
+      <td><code class="language-plaintext highlighter-rouge">proxy-list</code></td>
+      <td>列出所有可用节点</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="快速开始">快速开始</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 启动 mihomo</span>
+mihomo-start
+
+<span class="c"># 启用代理</span>
+proxy-on
+
+<span class="c"># 切换到日本节点</span>
+proxy-select jp
+
+<span class="c"># 查看状态</span>
+proxy-status
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="节点代码映射">节点代码映射</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>代码</th>
+      <th>国家</th>
+      <th>节点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">jp</code></td>
+      <td>日本</td>
+      <td>🇯🇵6日本-集群-专线, 🇯🇵7日本-专线, 🇯🇵10日本-专线</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">us</code></td>
+      <td>美国</td>
+      <td>🇺🇸11美国西集群-专线, 🇺🇸12美国旧金山-专线</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">hk</code></td>
+      <td>香港</td>
+      <td>🇭🇰1香港-专线, 🇭🇰2香港-专线, 🇭🇰3香港-专线</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sg</code></td>
+      <td>新加坡</td>
+      <td>🇸🇬15新加坡-专线, 🇸🇬24新加坡-专线</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">kr</code></td>
+      <td>韩国</td>
+      <td>🇰🇷25韩国-专线</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tw</code></td>
+      <td>台湾</td>
+      <td>4台湾-专线, 5台湾-专线</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">au</code></td>
+      <td>澳洲</td>
+      <td>🇦🇺19澳洲-专线</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="端口配置">端口配置</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>端口</th>
+      <th>类型</th>
+      <th>用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7899</td>
+      <td>Mixed</td>
+      <td>默认代理端口</td>
+    </tr>
+    <tr>
+      <td>7892</td>
+      <td>HTTP</td>
+      <td>HTTP 代理</td>
+    </tr>
+    <tr>
+      <td>7898</td>
+      <td>SOCKS</td>
+      <td>SOCKS5 代理</td>
+    </tr>
+    <tr>
+      <td>1235</td>
+      <td>API</td>
+      <td>Mihomo REST API</td>
+    </tr>
+    <tr>
+      <td>5336</td>
+      <td>DNS</td>
+      <td>Mihomo DNS 服务器</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="关键修复api-代理循环问题">关键修复：API 代理循环问题</h2>
+
+<h3 id="问题描述">问题描述</h3>
+
+<p>执行 <code class="language-plaintext highlighter-rouge">proxy-on</code> 或 <code class="language-plaintext highlighter-rouge">proxy-select</code> 后，Mihomo API 变得无响应（502 错误）。</p>
+
+<h3 id="根本原因">根本原因</h3>
+
+<p>当设置 <code class="language-plaintext highlighter-rouge">http_proxy</code> 环境变量后，对 localhost 的 API 调用被路由到代理本身，形成循环。</p>
+
+<h3 id="解决方案">解决方案</h3>
+
+<p>在所有 curl 命令中添加 <code class="language-plaintext highlighter-rouge">--noproxy "127.0.0.1"</code> 参数：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 修改前</span>
+curl <span class="nt">-s</span> http://127.0.0.1:1235/proxies
+
+<span class="c"># 修改后</span>
+curl <span class="nt">-s</span> <span class="nt">--noproxy</span> <span class="s2">"127.0.0.1"</span> http://127.0.0.1:1235/proxies
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="目录结构">目录结构</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/.config/zsh/functions/
+├── mihomo-api.zsh         # API 交互层（已修复）
+├── mihomo-functions.zsh   # 用户命令
+└── mihomo-nodes.zsh       # 节点映射
+
+~/.config/mihomo/
+└── config.yaml            # Mihomo 配置文件
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="测试代理">测试代理</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 启用代理</span>
+proxy-on
+
+<span class="c"># 测试 1: 检查出口 IP</span>
+curl https://api.ipify.org?format<span class="o">=</span>json
+
+<span class="c"># 测试 2: 检查 Google</span>
+curl <span class="nt">-I</span> https://www.google.com
+
+<span class="c"># 测试 3: 检查状态</span>
+proxy-status
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="故障排除">故障排除</h2>
+
+<h3 id="api-返回-502-或连接错误">API 返回 502 或连接错误</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 检查修复是否应用</span>
+<span class="nb">grep</span> <span class="nt">-n</span> <span class="s2">"noproxy"</span> ~/.config/zsh/functions/mihomo-api.zsh
+
+<span class="c"># 应该在 curl 命令中看到 --noproxy</span>
+</code></pre></div></div>
+
+<h3 id="代理启用但无网络">代理启用但无网络</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 检查节点状态</span>
+proxy-current
+
+<span class="c"># 查看 mihomo 日志</span>
+mihomo-log
+
+<span class="c"># 尝试其他节点</span>
+proxy-select us
+</code></pre></div></div>
+
+<h3 id="函数未找到">函数未找到</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 重新加载 zshrc</span>
+<span class="nb">source</span> ~/.zshrc
+
+<span class="c"># 检查文件是否存在</span>
+<span class="nb">ls</span> <span class="nt">-la</span> ~/.config/zsh/functions/
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>创建时间:</strong> 2026-01-21
+<strong>状态:</strong> ✅ 生产环境可用</p>
+
+  </div>
+  <div class="card-actions post-navigation">
+    
+      <a class="link-pill" href="/blog/2026/01/22/cursor-server-deploy/">← Cursor Remote-SSH Server 手动部署工具</a>
+    
+    
+      <a class="link-pill" href="/blog/2026/01/22/signal-integration/">Signal integration in reproducible single-cell workflows →</a>
+    
+  </div>
+</article>
+
+        </main>
+        <aside class="site-sidebar">
+  <div class="sidebar-card">
+    <div class="avatar-ring">
+      <span class="avatar-letter">H</span>
+    </div>
+    <h3>Huazhuo Feng</h3>
+    <p class="muted">MD · PhD Candidate</p>
+    <p class="muted">Guangzhou Medical University</p>
+    <div class="meta-tags">
+      
+        <span class="tag">Pulmonary Hypertension</span>
+      
+        <span class="tag">Single-cell Omics</span>
+      
+        <span class="tag">Spatial Omics</span>
+      
+    </div>
+    <div class="contact-links">
+      <a href="mailto:dotorfhz@163.com">dotorfhz@163.com</a>
+    </div>
+  </div>
+  <div class="sidebar-card">
+    <h4>🔗 Quick Links</h4>
+    <ul class="nav-list">
+      
+        <li><a href="https://scholar.google.com">Google Scholar</a></li>
+      
+        <li><a href="https://orcid.org/">ORCID</a></li>
+      
+        <li><a href="https://github.com">GitHub</a></li>
+      
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h4>🔍 Search</h4>
+    <label class="search-field">
+      <input type="search" placeholder="Search blog posts">
+      <span class="muted">Search coming soon</span>
+    </label>
+  </div>
+  <div class="sidebar-card">
+    <h4>📬 Subscribe</h4>
+    <p class="muted">RSS + email updates coming soon.</p>
+    <div class="subscriber-line">
+      <a href="/feed.xml" class="pill">RSS</a>
+      <span class="muted">+ future newsletter</span>
+    </div>
+  </div>
+</aside>
+
+      </div>
+      <footer class="site-footer">
+  <div class="footer-content">
+    <p>Huazhuo Feng · Academic Homepage & Blog</p>
+    <p>Built with Jekyll · Light/Dark Theme Toggle</p>
+  </div>
+</footer>
+
+    </div>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal integration in reproducible single-cell workflows · Huazhuo Feng — MD, Researcher in Pulmonary Hypertension</title>
+<meta name="description" content="Planning and building pipelines that allow teams to reproduce single-cell experiments end-to-end.">
+<meta property="og:title" content="Signal integration in reproducible single-cell workflows · Huazhuo Feng — MD, Researcher in Pulmonary Hypertension">
+<meta property="og:description" content="Planning and building pipelines that allow teams to reproduce single-cell experiments end-to-end.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:4000/blog/2026/01/22/signal-integration/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<!-- Prism.js for syntax highlighting (macOS Terminal style) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ruby.min.js"></script>
+<script>
+  (function () {
+    try {
+      const storedTheme = localStorage.getItem('preferred-theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = storedTheme || (systemDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (error) {
+      console.warn('Theme init errored', error);
+    }
+  })();
+</script>
+<link rel="stylesheet" href="/assets/css/site.css">
+
+  </head>
+  <body class="layout-post">
+    <div class="site-shell">
+      <header class="site-header">
+  <nav class="site-nav">
+  <div class="nav-brand">
+    <a href="/" class="brand">
+      <span class="brand-title">Huazhuo Feng</span>
+      <span class="brand-subtitle">MD · PhD Candidate</span>
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#publications">Publications</a>
+    <a href="/#contact">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn" data-theme-toggle aria-label="Toggle theme">🌙 / ☀️</button>
+  </div>
+</nav>
+
+</header>
+
+      <div class="site-body">
+        <main class="main-column">
+          <article class="content-section blog-post">
+  <header class="post-header">
+    <p class="muted small">2026-01-22</p>
+    <h1>Signal integration in reproducible single-cell workflows</h1>
+    
+    
+      <div class="meta-chip-group">
+        
+          <span class="meta-chip">single-cell</span>
+        
+          <span class="meta-chip">reproducibility</span>
+        
+          <span class="meta-chip">workflows</span>
+        
+      </div>
+    
+  </header>
+  <div class="post-body">
+    <h2 id="why-reproducibility-matters">Why reproducibility matters</h2>
+
+<p>Sharing data is necessary, but without clear integration storylines the next team spends months reconstructing the steps.</p>
+
+<h2 id="reproducible-pipeline-checklist">Reproducible pipeline checklist</h2>
+
+<ol>
+  <li>Track metadata for each sample.</li>
+  <li>Containerize dependencies with Docker or Conda.</li>
+  <li>Generate deterministic plots and share the code that created them.</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make <span class="nb">test
+</span>make deploy
+</code></pre></div></div>
+
+<h2 id="whats-next">What’s next</h2>
+
+<p>The upcoming tutorials will cover best practices in metadata harmonization and tying visualization back to biology.</p>
+
+  </div>
+  <div class="card-actions post-navigation">
+    
+      <a class="link-pill" href="/blog/2026/01/22/mihomo-proxy-setup/">← Mihomo 代理配置与 Shell 集成指南</a>
+    
+    
+  </div>
+</article>
+
+        </main>
+        <aside class="site-sidebar">
+  <div class="sidebar-card">
+    <div class="avatar-ring">
+      <span class="avatar-letter">H</span>
+    </div>
+    <h3>Huazhuo Feng</h3>
+    <p class="muted">MD · PhD Candidate</p>
+    <p class="muted">Guangzhou Medical University</p>
+    <div class="meta-tags">
+      
+        <span class="tag">Pulmonary Hypertension</span>
+      
+        <span class="tag">Single-cell Omics</span>
+      
+        <span class="tag">Spatial Omics</span>
+      
+    </div>
+    <div class="contact-links">
+      <a href="mailto:dotorfhz@163.com">dotorfhz@163.com</a>
+    </div>
+  </div>
+  <div class="sidebar-card">
+    <h4>🔗 Quick Links</h4>
+    <ul class="nav-list">
+      
+        <li><a href="https://scholar.google.com">Google Scholar</a></li>
+      
+        <li><a href="https://orcid.org/">ORCID</a></li>
+      
+        <li><a href="https://github.com">GitHub</a></li>
+      
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h4>🔍 Search</h4>
+    <label class="search-field">
+      <input type="search" placeholder="Search blog posts">
+      <span class="muted">Search coming soon</span>
+    </label>
+  </div>
+  <div class="sidebar-card">
+    <h4>📬 Subscribe</h4>
+    <p class="muted">RSS + email updates coming soon.</p>
+    <div class="subscriber-line">
+      <a href="/feed.xml" class="pill">RSS</a>
+      <span class="muted">+ future newsletter</span>
+    </div>
+  </div>
+</aside>
+
+      </div>
+      <footer class="site-footer">
+  <div class="footer-content">
+    <p>Huazhuo Feng · Academic Homepage & Blog</p>
+    <p>Built with Jekyll · Light/Dark Theme Toggle</p>
+  </div>
+</footer>
+
+    </div>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>

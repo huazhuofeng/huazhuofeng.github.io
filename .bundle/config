@@ -1,0 +1,3 @@
+---
+BUNDLE_______UNSET: "disable_multisource"
+BUNDLE_PATH: "vendor/bundle"

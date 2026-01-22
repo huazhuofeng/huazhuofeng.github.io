@@ -1,0 +1,16 @@
+title: "Huazhuo Feng — MD, PhD Candidate, Researcher in Pulmonary Hypertension"
+description: "Academic homepage and blog for Huazhuo Feng."
+url: "https://example.com"
+baseurl: ""
+lang: en
+permalink: /blog/:year/:month/:day/:title/
+theme: null
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
