@@ -434,7 +434,11 @@ cursor-deploy <span class="nt">--list</span>
       <span class="status-dot"></span>
       <span>AI Assistant</span>
     </div>
-    <button id="close-chat" class="chat-close-btn" aria-label="Close Chat">×</button>
+    <div class="chat-actions">
+      <button id="chat-settings-btn" class="chat-action-btn" aria-label="Settings" title="Login / API Key">⚙️</button>
+      <button id="chat-resize-btn" class="chat-action-btn" aria-label="Resize" title="Expand/Collapse">⤢</button>
+      <button id="close-chat" class="chat-close-btn" aria-label="Close Chat">×</button>
+    </div>
   </div>
   
   <div id="chat-messages" class="chat-messages">
@@ -445,11 +449,41 @@ cursor-deploy <span class="nt">--list</span>
     </div>
   </div>
 
-  <div class="chat-input-area">
-    <textarea id="chat-input" placeholder="Type a message..." rows="1"></textarea>
-    <button id="send-chat" class="chat-send-btn" aria-label="Send">
-      ➤
-    </button>
+  <!-- Auth Form Overlay (Hidden by default) -->
+  <div id="chat-auth-overlay" class="chat-auth-overlay hidden">
+    <div class="auth-card">
+      <h3>🔐 Unlock Full Access</h3>
+      <p class="auth-desc">Daily guest limit reached (or login for VIP access).</p>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="vip">VIP Login</button>
+        <button class="auth-tab" data-tab="apikey">Custom Key</button>
+      </div>
+
+      <div id="auth-panel-vip" class="auth-panel active">
+        <input type="password" id="vip-password-input" placeholder="Enter VIP Password" class="auth-input">
+      </div>
+
+      <div id="auth-panel-apikey" class="auth-panel">
+        <input type="password" id="api-key-input" placeholder="sk-..." class="auth-input">
+        <p class="auth-note">Your key is stored in browser memory only and cleared on refresh.</p>
+      </div>
+
+      <div class="auth-actions">
+        <button id="auth-cancel-btn" class="btn-text">Cancel</button>
+        <button id="auth-save-btn" class="btn-primary">Save & Retry</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-footer">
+    <div class="chat-input-area">
+      <textarea id="chat-input" placeholder="Type a message..." rows="1"></textarea>
+      <button id="send-chat" class="chat-send-btn" aria-label="Send">➤</button>
+    </div>
+    <div class="chat-privacy-notice">
+      Chats are not saved. History is deleted upon refresh.
+    </div>
   </div>
 </div>
 

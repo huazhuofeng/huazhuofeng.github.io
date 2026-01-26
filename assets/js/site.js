@@ -125,12 +125,30 @@
   const chatInput = document.getElementById('chat-input');
   const sendChatBtn = document.getElementById('send-chat');
   const chatMessages = document.getElementById('chat-messages');
+  
+  // New UI Elements
+  const resizeBtn = document.getElementById('chat-resize-btn');
+  const settingsBtn = document.getElementById('chat-settings-btn');
+  const authOverlay = document.getElementById('chat-auth-overlay');
+  const authTabs = document.querySelectorAll('.auth-tab');
+  const authPanels = document.querySelectorAll('.auth-panel');
+  const authSaveBtn = document.getElementById('auth-save-btn');
+  const authCancelBtn = document.getElementById('auth-cancel-btn');
+  const vipInput = document.getElementById('vip-password-input');
+  const apiKeyInput = document.getElementById('api-key-input');
 
-  const DEEPSEEK_API_KEY = 'sk-efb48b37dd1649f0bf72838ab86b63f5';
-  const API_URL = 'https://api.deepseek.com/chat/completions';
+  // Configuration
+  // IMPORTANT: Replace this with your actual Cloudflare Worker URL after deployment
+  const WORKER_URL = 'deepseek-proxy.doctorfhz.workers.dev';  
+  
+  // State
+  let userAuth = {
+    type: 'guest', // 'guest', 'vip', 'apikey'
+    value: null
+  };
 
   if (chatFab && chatWidget) {
-    // Toggle Chat
+    // 1. Toggle Chat
     const toggleChat = () => {
       chatWidget.classList.toggle('hidden');
       if (!chatWidget.classList.contains('hidden')) {
@@ -141,7 +159,61 @@
     chatFab.addEventListener('click', toggleChat);
     closeChatBtn.addEventListener('click', toggleChat);
 
-    // Append Message
+    // 2. Resize Chat
+    resizeBtn.addEventListener('click', () => {
+      chatWidget.classList.toggle('expanded');
+    });
+
+    // 3. Settings / Auth Overlay
+    const toggleAuthOverlay = (show) => {
+      if (show) {
+        authOverlay.classList.remove('hidden');
+        // Pre-fill if exists
+        if (userAuth.type === 'vip') vipInput.value = userAuth.value;
+        if (userAuth.type === 'apikey') apiKeyInput.value = userAuth.value;
+      } else {
+        authOverlay.classList.add('hidden');
+      }
+    };
+
+    settingsBtn.addEventListener('click', () => toggleAuthOverlay(true));
+    authCancelBtn.addEventListener('click', () => toggleAuthOverlay(false));
+
+    // Auth Tabs Logic
+    authTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Switch Tabs
+        authTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // Switch Panels
+        const target = tab.dataset.tab;
+        authPanels.forEach(p => p.classList.remove('active'));
+        document.getElementById(`auth-panel-${target}`).classList.add('active');
+      });
+    });
+
+    // Save Auth
+    authSaveBtn.addEventListener('click', () => {
+      const activeTab = document.querySelector('.auth-tab.active').dataset.tab;
+      
+      if (activeTab === 'vip') {
+        const pass = vipInput.value.trim();
+        if (pass) {
+          userAuth = { type: 'vip', value: pass };
+          toggleAuthOverlay(false);
+          // Optional: Retry last message if needed
+        }
+      } else {
+        const key = apiKeyInput.value.trim();
+        if (key) {
+          userAuth = { type: 'apikey', value: key };
+          toggleAuthOverlay(false);
+        }
+      }
+    });
+
+    // 4. Chat Logic
     const appendMessage = (role, text) => {
       const msgDiv = document.createElement('div');
       msgDiv.className = `message ${role === 'user' ? 'user-message' : 'ai-message'}`;
@@ -150,7 +222,6 @@
       contentDiv.className = 'message-content';
       
       if (role === 'ai') {
-        // Parse Markdown for AI
         contentDiv.innerHTML = typeof marked !== 'undefined' ? marked.parse(text) : `<p>${text}</p>`;
       } else {
         contentDiv.textContent = text;
@@ -161,16 +232,14 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
-    // Send Message to API
     const handleSend = async () => {
       const text = chatInput.value.trim();
       if (!text) return;
 
-      // Clear input and show user message
       chatInput.value = '';
       appendMessage('user', text);
 
-      // Show loading state
+      // Loading State
       const loadingId = 'loading-' + Date.now();
       const loadingDiv = document.createElement('div');
       loadingDiv.className = 'message ai-message';
@@ -180,41 +249,85 @@
       chatMessages.scrollTop = chatMessages.scrollHeight;
 
       try {
-        const response = await fetch(API_URL, {
+        // Prepare Headers
+        const headers = { 'Content-Type': 'application/json' };
+        if (userAuth.type === 'vip') {
+          headers['Authorization'] = `Password ${userAuth.value}`;
+        } else if (userAuth.type === 'apikey') {
+          headers['Authorization'] = `Bearer ${userAuth.value}`;
+        }
+
+        const response = await fetch(WORKER_URL, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
-          },
+          headers: headers,
           body: JSON.stringify({
-            model: "deepseek-chat",
             messages: [
-              { role: "system", content: "You are a helpful AI assistant for Huazhuo Feng's academic website." },
+              { role: "system", content: "You are a helpful AI assistant." },
               { role: "user", content: text }
-            ],
-            stream: false
+            ]
           })
         });
 
+        // Handle Errors (Rate Limit etc)
+        if (response.status === 403 || response.status === 401) {
+          const errData = await response.json();
+          document.getElementById(loadingId).remove();
+          appendMessage('ai', `⚠️ ${errData.error}`);
+          // Auto-open auth overlay
+          setTimeout(() => toggleAuthOverlay(true), 1000);
+          return;
+        }
+
         if (!response.ok) throw new Error('API Error');
 
-        const data = await response.json();
-        const reply = data.choices[0].message.content;
-
-        // Remove loading and show reply
+        // Handle Stream
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let aiText = '';
+        
+        // Replace loading with empty message to stream into
         document.getElementById(loadingId).remove();
-        appendMessage('ai', reply);
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message ai-message';
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        msgDiv.appendChild(contentDiv);
+        chatMessages.appendChild(msgDiv);
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          
+          const chunk = decoder.decode(value);
+          const lines = chunk.split('\n');
+          
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const data = line.slice(6);
+              if (data === '[DONE]') break;
+              try {
+                const parsed = JSON.parse(data);
+                const delta = parsed.choices[0].delta.content || '';
+                aiText += delta;
+                contentDiv.innerHTML = typeof marked !== 'undefined' ? marked.parse(aiText) : `<p>${aiText}</p>`;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+              } catch (e) {
+                // ignore parse errors for partial chunks
+              }
+            }
+          }
+        }
 
       } catch (error) {
         console.error(error);
-        document.getElementById(loadingId).remove();
-        appendMessage('ai', 'Sorry, I encountered an error. Please try again later.');
+        const loadingEl = document.getElementById(loadingId);
+        if (loadingEl) loadingEl.remove();
+        appendMessage('ai', 'Sorry, I encountered an error. Please check your connection or try again.');
       }
     };
 
     sendChatBtn.addEventListener('click', handleSend);
     
-    // Handle Enter to send
     chatInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();

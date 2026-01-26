@@ -1,46 +1,60 @@
-# Huazhuofeng.github.io
+# Huazhuo Feng's Academic Homepage
+https://huazhuofeng.top
 
-This repository hosts a Jekyll-based research homepage with a blog under `/blog/`. The root page is a resume-style portrait (resume + news + publications) while the `/blog/` path renders Markdown posts with a “博客园风格” navigation, bilingual prompts, and light/dark theme switching.
+This repository hosts a Jekyll-based academic homepage and blog. It features a professional, clean design tailored for researchers, with integrated tools for content discovery and interaction.
 
-## Development
+## ✨ Key Features
 
-1. Install Ruby + Bundler (`gem install bundler`).
-2. Run `bundle install`.
-3. Launch the preview server:
+- **Academic Portfolio**: Resume-style homepage showcasing profile, research interests, news, and publications.
+- **Blog System**: Markdown-based blog under `/blog/` with tag support.
+- **Data-Driven**: Content (Profile, News, Publications) is managed via simple YAML files in `_data/`.
+- **Professional Design**: Inspired by top academic labs (e.g., Gu Lab), featuring a "Deep Slate Blue" color scheme and sticky sidebar.
+- **Power Tools**:
+    - **Command Palette**: Press `Ctrl + P` (or `Cmd + P`) to instantly search and navigate posts.
+    - **AI Assistant**: Built-in DeepSeek AI chat widget for answering questions about the research (demo purpose).
+- **Dark Mode**: Automatic system detection + manual toggle.
 
-```
-bundle exec jekyll serve --livereload
-```
+## 🚀 Development
 
-4. Visit `http://127.0.0.1:4000/` to see the homepage. The blog lives at `/blog/`.
+1.  **Prerequisites**: Ruby + Bundler.
+2.  **Install**:
+    ```bash
+    gem install bundler
+    bundle install
+    ```
+3.  **Run**:
+    ```bash
+    bundle exec jekyll serve --livereload
+    ```
+4.  **Preview**: Visit `http://127.0.0.1:4000/`.
 
-## Writing posts
+## 📝 Managing Content
 
-Create a file under `_posts/` with the format `YYYY-MM-DD-slug.md`. The front matter already uses the shared `post` layout, so you only need:
+| Section | Data Source | Description |
+| :--- | :--- | :--- |
+| **Profile** | `_data/profile.yml` | Sidebar info, Hero section text, Contact links. |
+| **Publications** | `_data/publications.yml` | List of papers. Set `featured: true` to show on homepage. |
+| **News** | `_data/news.yml` | "News & Updates" timeline items. |
+| **Blog Posts** | `_posts/YYYY-MM-DD-slug.md` | Standard Jekyll posts. |
 
+### Creating a Post
+Create a file in `_posts/` (e.g., `2026-01-26-new-paper.md`):
 ```yaml
 ---
-title: "Descriptive title"
-tags: [single-cell, reproducibility]
+title: "Paper Published in Nature Medicine"
+subtitle: "A breakthrough in pulmonary hypertension"
+tags: [publication, research]
 ---
+Content goes here...
 ```
 
-Add Markdown content below the front matter. The blog list on `/blog/` regenerates automatically.
+## 🛠 Tech Stack
 
-## Updating data-driven sections
+- **Engine**: Jekyll
+- **Styling**: Custom CSS (No heavy frameworks), Glassmorphism effects.
+- **Search**: `simple-jekyll-search` (Client-side).
+- **AI**: DeepSeek API integration (Client-side fetch).
+- **Comments**: Giscus (GitHub Discussions).
 
-- `_data/profile.yml` controls the sidebar and hero information.
-- `_data/publications.yml` determines the “Selected Publications” cards.
-- `_data/news.yml` drives the “News & Updates” timeline.
-
-Adjust these files to update the resume content without touching templates.
-
-## Theme & language
-
-- The page respects the system color scheme. Click the moon/sun icon to toggle light/dark manually.
-- Use the “中文 / EN” buttons to switch visibility between translations (the UI still shows both when “bilingual” mode is active).
-- Preference choices persist via `localStorage`.
-
-## Plan tracking
-
-Every significant rewrite creates a Markdown note inside the `plan/` directory (e.g., `plan/2026-01-22-v1.md`) describing the decision set. Add new files there whenever the architecture or scope changes.
+## 📄 License
+MIT License. Feel free to fork and adapt for your own academic page.
