@@ -97,8 +97,10 @@
       // Toggle on Ctrl+P or Cmd+P
       if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
         e.preventDefault();
+        e.stopPropagation(); // Stop event from bubbling
         const isOpen = searchModal.classList.contains('open');
         toggleModal(!isOpen);
+        return false; // Legacy way to prevent default
       }
       // Close on Esc
       if (e.key === 'Escape' && searchModal.classList.contains('open')) {

@@ -1,0 +1,79 @@
+<h1 id="claudemd">CLAUDE.md</h1>
+
+<p>This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.</p>
+
+<h2 id="project-overview">Project Overview</h2>
+
+<p>This is a Jekyll-based academic homepage and blog hosted on GitHub Pages at <code class="language-plaintext highlighter-rouge">huazhuofeng.top</code>. The site has two main sections:</p>
+<ul>
+  <li><strong>Root path (<code class="language-plaintext highlighter-rouge">/</code>)</strong>: Resume-style portfolio (profile, news, publications)</li>
+  <li><strong>Blog path (<code class="language-plaintext highlighter-rouge">/blog/</code>)</strong>: Academic blog with 博客园-style navigation</li>
+</ul>
+
+<p>The site is bilingual (Chinese/English) with light/dark theme support.</p>
+
+<h2 id="development-commands">Development Commands</h2>
+
+<p><strong>Setup:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler
+bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<p><strong>Local development (with live reload):</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span>
+</code></pre></div></div>
+<p>Access at <code class="language-plaintext highlighter-rouge">http://127.0.0.1:4000/</code>. If port 4000 is in use, add <code class="language-plaintext highlighter-rouge">--port 4001</code>.</p>
+
+<p><strong>Build and validation:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll build    <span class="c"># Build to _site/</span>
+bundle <span class="nb">exec </span>jekyll doctor   <span class="c"># Check for configuration errors</span>
+</code></pre></div></div>
+
+<h2 id="architecture">Architecture</h2>
+
+<h3 id="data-driven-content">Data-Driven Content</h3>
+<p>Resume sections are powered by YAML files in <code class="language-plaintext highlighter-rouge">_data/</code>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">profile.yml</code> — Sidebar and hero information</li>
+  <li><code class="language-plaintext highlighter-rouge">publications.yml</code> — “Selected Publications” cards</li>
+  <li><code class="language-plaintext highlighter-rouge">news.yml</code> — “News &amp; Updates” timeline</li>
+</ul>
+
+<p>Edit these files to update resume content without touching templates.</p>
+
+<h3 id="blog-posts">Blog Posts</h3>
+<p>Create files in <code class="language-plaintext highlighter-rouge">_posts/</code> with format <code class="language-plaintext highlighter-rouge">YYYY-MM-DD-slug.md</code>. Front matter:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Post</span><span class="nv"> </span><span class="s">title"</span>
+<span class="na">tags</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">single-cell</span><span class="pi">,</span> <span class="nv">reproducibility</span><span class="pi">]</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>The blog listing at <code class="language-plaintext highlighter-rouge">/blog/</code> auto-generates from the <code class="language-plaintext highlighter-rouge">_posts/</code> directory.</p>
+
+<h3 id="layouts-and-includes">Layouts and Includes</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">_layouts/default.html</code> — Base layout with HTML structure</li>
+  <li><code class="language-plaintext highlighter-rouge">_layouts/home.html</code> — Homepage layout</li>
+  <li><code class="language-plaintext highlighter-rouge">_layouts/blog_index.html</code> — Blog listing layout</li>
+  <li><code class="language-plaintext highlighter-rouge">_layouts/post.html</code> — Individual post layout</li>
+  <li><code class="language-plaintext highlighter-rouge">_includes/</code> — Reusable components (head, header, nav, footer, sidebar)</li>
+</ul>
+
+<h3 id="theme-and-language">Theme and Language</h3>
+<ul>
+  <li>Theme toggle (light/dark) and language switcher (中文/EN) in <code class="language-plaintext highlighter-rouge">assets/js/site.js</code></li>
+  <li>Preferences persist via <code class="language-plaintext highlighter-rouge">localStorage</code></li>
+  <li>CSS variables in <code class="language-plaintext highlighter-rouge">assets/css/site.css</code> handle theming</li>
+</ul>
+
+<h3 id="jekyll-configuration">Jekyll Configuration</h3>
+<ul>
+  <li>Permalinks: <code class="language-plaintext highlighter-rouge">/blog/:year/:month/:day/:title/</code></li>
+  <li>Plugins: <code class="language-plaintext highlighter-rouge">jekyll-feed</code>, <code class="language-plaintext highlighter-rouge">jekyll-sitemap</code></li>
+  <li>Default layout for posts: <code class="language-plaintext highlighter-rouge">post</code></li>
+</ul>
+
+<h2 id="plan-tracking">Plan Tracking</h2>
+
+<p>Significant architecture changes are documented in <code class="language-plaintext highlighter-rouge">plan/</code> with dated Markdown files (e.g., <code class="language-plaintext highlighter-rouge">plan/2026-01-22-v1.md</code>). Add a new plan file when making major structural changes.</p>

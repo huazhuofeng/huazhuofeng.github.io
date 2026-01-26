@@ -1,24 +1,44 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog · Huazhuo Feng — MD, Researcher in Pulmonary Hypertension</title>
-<meta name="description" content="Academic homepage and blog for Huazhuofeng.">
-<meta property="og:title" content="Blog · Huazhuo Feng — MD, Researcher in Pulmonary Hypertension">
-<meta property="og:description" content="Academic homepage and blog for Huazhuofeng.">
+<title>Blog · Huazhuo Feng — MD, PhD Candidate, Researcher in Pulmonary Hypertension</title>
+<meta name="description" content="Academic homepage and blog for Huazhuo Feng.">
+<meta name="author" content="Huazhuo Feng">
+<meta name="keywords" content="Pulmonary Hypertension, Single-cell Omics, Spatial Omics">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Blog · Huazhuo Feng — MD, PhD Candidate, Researcher in Pulmonary Hypertension">
+<meta property="og:description" content="Academic homepage and blog for Huazhuo Feng.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="http://localhost:4000/blog/">
+<meta property="og:image" content="http://localhost:4000/assets/images/og-image.jpg">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog · Huazhuo Feng — MD, PhD Candidate, Researcher in Pulmonary Hypertension">
+<meta name="twitter:description" content="Academic homepage and blog for Huazhuo Feng.">
+<meta name="twitter:image" content="http://localhost:4000/assets/images/og-image.jpg">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-<!-- Prism.js for syntax highlighting (macOS Terminal style) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+<!-- Prism.js for syntax highlighting -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ruby.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ruby.min.js" defer></script>
+
+<!-- Search & AI Chat dependencies -->
+<script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+
+<!-- Theme Init -->
 <script>
   (function () {
     try {
@@ -44,14 +64,24 @@
       <span class="brand-subtitle">MD · PhD Candidate</span>
     </a>
   </div>
+  
+  <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/blog/">Blog</a>
     <a href="/#publications">Publications</a>
     <a href="/#contact">Contact</a>
-  </div>
-  <div class="nav-actions">
-    <button class="nav-btn" data-theme-toggle aria-label="Toggle theme">🌙 / ☀️</button>
+    <div class="nav-actions">
+      <button class="nav-btn theme-toggle" data-theme-toggle aria-label="Toggle theme">
+        <span class="icon-moon">🌙</span>
+        <span class="icon-sun">☀️</span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -146,13 +176,17 @@
 
         </main>
         <aside class="site-sidebar">
-  <div class="sidebar-card">
+  <!-- Profile Card -->
+  <div class="sidebar-card profile-card">
     <div class="avatar-ring">
       <span class="avatar-letter">H</span>
     </div>
-    <h3>Huazhuo Feng</h3>
-    <p class="muted">MD · PhD Candidate</p>
-    <p class="muted">Guangzhou Medical University</p>
+    <div class="profile-info">
+      <h3>Huazhuo Feng</h3>
+      <p class="role">MD · PhD Candidate</p>
+      <p class="affiliation">Guangzhou Medical University</p>
+    </div>
+    
     <div class="meta-tags">
       
         <span class="tag">Pulmonary Hypertension</span>
@@ -162,36 +196,41 @@
         <span class="tag">Spatial Omics</span>
       
     </div>
+
     <div class="contact-links">
-      <a href="mailto:dotorfhz@163.com">dotorfhz@163.com</a>
+      <a href="mailto:dotorfhz@163.com" class="btn-primary-outline">Email Me</a>
     </div>
   </div>
+
+  <!-- Search Widget -->
+  <div class="sidebar-card search-card">
+    <h4>Search Blog</h4>
+    <div class="search-wrapper">
+      <input type="text" id="search-input" placeholder="Type to search...">
+      <div id="results-container"></div>
+    </div>
+  </div>
+
+  <!-- Quick Links -->
   <div class="sidebar-card">
-    <h4>🔗 Quick Links</h4>
+    <h4>Quick Links</h4>
     <ul class="nav-list">
       
-        <li><a href="https://scholar.google.com">Google Scholar</a></li>
+        <li><a href="https://scholar.google.com" target="_blank">Google Scholar</a></li>
       
-        <li><a href="https://orcid.org/">ORCID</a></li>
+        <li><a href="https://orcid.org/" target="_blank">ORCID</a></li>
       
-        <li><a href="https://github.com">GitHub</a></li>
+        <li><a href="https://github.com" target="_blank">GitHub</a></li>
       
     </ul>
   </div>
-  <div class="sidebar-card">
-    <h4>🔍 Search</h4>
-    <label class="search-field">
-      <input type="search" placeholder="Search blog posts">
-      <span class="muted">Search coming soon</span>
-    </label>
-  </div>
-  <div class="sidebar-card">
-    <h4>📬 Subscribe</h4>
-    <p class="muted">RSS + email updates coming soon.</p>
-    <div class="subscriber-line">
-      <a href="/feed.xml" class="pill">RSS</a>
-      <span class="muted">+ future newsletter</span>
-    </div>
+
+  <!-- RSS -->
+  <div class="sidebar-card compact">
+    <a href="/feed.xml" class="rss-link">
+      <span>Subscribe via RSS</span>
+      <span class="icon">📡</span>
+    </a>
   </div>
 </aside>
 
@@ -204,6 +243,50 @@
 </footer>
 
     </div>
+    
+    <div id="search-modal" class="search-modal-backdrop hidden" aria-hidden="true">
+  <div class="search-modal-content">
+    <div class="search-modal-header">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="modal-search-input" placeholder="Search posts... (Enter to select)" autocomplete="off">
+      <span class="search-shortcut-hint">Esc to close</span>
+    </div>
+    <ul id="modal-results-container" class="search-results-list"></ul>
+  </div>
+</div>
+
+    <!-- Floating Action Button -->
+<button id="chat-fab" class="chat-fab" aria-label="Open AI Chat">
+  <span class="chat-icon">🤖</span>
+</button>
+
+<!-- Chat Window -->
+<div id="chat-widget" class="chat-widget hidden">
+  <div class="chat-header">
+    <div class="chat-title">
+      <span class="status-dot"></span>
+      <span>AI Assistant</span>
+    </div>
+    <button id="close-chat" class="chat-close-btn" aria-label="Close Chat">×</button>
+  </div>
+  
+  <div id="chat-messages" class="chat-messages">
+    <div class="message ai-message">
+      <div class="message-content">
+        <p>Hello! I'm your AI assistant powered by DeepSeek. How can I help you today?</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <textarea id="chat-input" placeholder="Type a message..." rows="1"></textarea>
+    <button id="send-chat" class="chat-send-btn" aria-label="Send">
+      ➤
+    </button>
+  </div>
+</div>
+
+
     <script src="/assets/js/site.js"></script>
   </body>
 </html>
