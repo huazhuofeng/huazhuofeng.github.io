@@ -1,0 +1,30 @@
+<!-- Floating Action Button -->
+<button id="chat-fab" class="chat-fab" aria-label="Open AI Chat">
+  <span class="chat-icon">🤖</span>
+</button>
+
+<!-- Chat Window -->
+<div id="chat-widget" class="chat-widget hidden">
+  <div class="chat-header">
+    <div class="chat-title">
+      <span class="status-dot"></span>
+      <span>AI Assistant</span>
+    </div>
+    <button id="close-chat" class="chat-close-btn" aria-label="Close Chat">×</button>
+  </div>
+  
+  <div id="chat-messages" class="chat-messages">
+    <div class="message ai-message">
+      <div class="message-content">
+        <p>Hello! I'm your AI assistant powered by DeepSeek. How can I help you today?</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <textarea id="chat-input" placeholder="Type a message..." rows="1"></textarea>
+    <button id="send-chat" class="chat-send-btn" aria-label="Send">
+      ➤
+    </button>
+  </div>
+</div>

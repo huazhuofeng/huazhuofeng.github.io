@@ -5,13 +5,23 @@
       <span class="brand-subtitle">MD · PhD Candidate</span>
     </a>
   </div>
+  
+  <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
   <div class="nav-links">
     <a href="{{ '/' | relative_url }}">Home</a>
     <a href="{{ '/blog/' | relative_url }}">Blog</a>
     <a href="{{ '/#publications' | relative_url }}">Publications</a>
     <a href="{{ '/#contact' | relative_url }}">Contact</a>
-  </div>
-  <div class="nav-actions">
-    <button class="nav-btn" data-theme-toggle aria-label="Toggle theme">🌙 / ☀️</button>
+    <div class="nav-actions">
+      <button class="nav-btn theme-toggle" data-theme-toggle aria-label="Toggle theme">
+        <span class="icon-moon">🌙</span>
+        <span class="icon-sun">☀️</span>
+      </button>
+    </div>
   </div>
 </nav>
