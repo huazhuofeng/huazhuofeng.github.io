@@ -5,6 +5,23 @@
   const navLinks = document.querySelector('.nav-links');
 
   // ==========================================================================
+  // Dynamic Background
+  // ==========================================================================
+  const bgContainer = document.getElementById('site-background');
+  const bgImages = [
+    'MJ.jpg',
+    'black_myth.jpg',
+    'lebron_james.jpg',
+    'Genshin_impact.png'
+  ];
+
+  if (bgContainer) {
+    const randomImage = bgImages[Math.floor(Math.random() * bgImages.length)];
+    // Add timestamp to prevent caching if needed, but standard caching is better for perf
+    bgContainer.style.backgroundImage = `url('/assets/img/background/${randomImage}')`;
+  }
+
+  // ==========================================================================
   // Theme Management
   // ==========================================================================
   const setTheme = (theme) => {
@@ -43,6 +60,53 @@
     });
   };
   highlightAuthorName();
+
+  // ==========================================================================
+  // Navbar Search Initialization
+  // ==========================================================================
+  const navSearchInput = document.getElementById('nav-search-input');
+  const navSearchResults = document.getElementById('nav-search-results');
+
+  if (window.SimpleJekyllSearch && navSearchInput && navSearchResults) {
+    SimpleJekyllSearch({
+      searchInput: navSearchInput,
+      resultsContainer: navSearchResults,
+      json: '/search.json',
+      searchResultTemplate: '<li><a href="{url}"><span class="search-category">{category}</span>{title}</a></li>',
+      noResultsText: '<li style="padding:0.8rem;color:var(--muted)">No results found</li>',
+      limit: 10
+    });
+
+    // Handle Enter Key to select first result
+    navSearchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const firstLink = navSearchResults.querySelector('a');
+        if (firstLink) {
+          firstLink.click();
+        }
+      }
+    });
+
+    // Show/Hide logic
+    const toggleResults = () => {
+      if (navSearchInput.value.trim().length > 0) {
+        navSearchResults.style.display = 'block';
+      } else {
+        navSearchResults.style.display = 'none';
+      }
+    };
+
+    navSearchInput.addEventListener('input', toggleResults);
+    navSearchInput.addEventListener('focus', toggleResults);
+    
+    // Delay hiding to allow clicks
+    navSearchInput.addEventListener('blur', () => {
+      setTimeout(() => {
+        navSearchResults.style.display = 'none';
+      }, 200);
+    });
+  }
 
   // ==========================================================================
   // Sidebar Search Initialization
@@ -130,6 +194,11 @@
   const resizeBtn = document.getElementById('chat-resize-btn');
   const settingsBtn = document.getElementById('chat-settings-btn');
   const authOverlay = document.getElementById('chat-auth-overlay');
+  
+  // Fix: Ensure overlay has correct class for CSS transitions
+  if (authOverlay && !authOverlay.classList.contains('chat-settings-panel')) {
+    authOverlay.classList.add('chat-settings-panel');
+  }
   const authTabs = document.querySelectorAll('.auth-tab');
   const authPanels = document.querySelectorAll('.auth-panel');
   const authSaveBtn = document.getElementById('auth-save-btn');
@@ -138,8 +207,7 @@
   const apiKeyInput = document.getElementById('api-key-input');
 
   // Configuration
-  // IMPORTANT: Replace this with your actual Cloudflare Worker URL after deployment
-  const WORKER_URL = 'deepseek-proxy.doctorfhz.workers.dev';  
+  const WORKER_URL = 'https://deepseek-proxy.doctorfhz.workers.dev/chat';  
   
   // State
   let userAuth = {
@@ -160,58 +228,70 @@
     closeChatBtn.addEventListener('click', toggleChat);
 
     // 2. Resize Chat
-    resizeBtn.addEventListener('click', () => {
-      chatWidget.classList.toggle('expanded');
-    });
+    if (resizeBtn) {
+      resizeBtn.addEventListener('click', () => {
+        chatWidget.classList.toggle('expanded');
+      });
+    }
 
     // 3. Settings / Auth Overlay
     const toggleAuthOverlay = (show) => {
-      if (show) {
-        authOverlay.classList.remove('hidden');
-        // Pre-fill if exists
-        if (userAuth.type === 'vip') vipInput.value = userAuth.value;
-        if (userAuth.type === 'apikey') apiKeyInput.value = userAuth.value;
-      } else {
-        authOverlay.classList.add('hidden');
+      if (authOverlay) {
+        if (show) {
+          authOverlay.classList.remove('hidden');
+          // Pre-fill if exists
+          if (userAuth.type === 'vip') vipInput.value = userAuth.value;
+          if (userAuth.type === 'apikey') apiKeyInput.value = userAuth.value;
+        } else {
+          authOverlay.classList.add('hidden');
+        }
       }
     };
 
-    settingsBtn.addEventListener('click', () => toggleAuthOverlay(true));
-    authCancelBtn.addEventListener('click', () => toggleAuthOverlay(false));
+    if (settingsBtn) {
+      settingsBtn.addEventListener('click', () => toggleAuthOverlay(true));
+    }
+    
+    if (authCancelBtn) {
+      authCancelBtn.addEventListener('click', () => toggleAuthOverlay(false));
+    }
 
     // Auth Tabs Logic
-    authTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Switch Tabs
-        authTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        
-        // Switch Panels
-        const target = tab.dataset.tab;
-        authPanels.forEach(p => p.classList.remove('active'));
-        document.getElementById(`auth-panel-${target}`).classList.add('active');
+    if (authTabs.length > 0) {
+      authTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Switch Tabs
+          authTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          // Switch Panels
+          const target = tab.dataset.tab;
+          authPanels.forEach(p => p.classList.remove('active'));
+          document.getElementById(`auth-panel-${target}`).classList.add('active');
+        });
       });
-    });
+    }
 
     // Save Auth
-    authSaveBtn.addEventListener('click', () => {
-      const activeTab = document.querySelector('.auth-tab.active').dataset.tab;
-      
-      if (activeTab === 'vip') {
-        const pass = vipInput.value.trim();
-        if (pass) {
-          userAuth = { type: 'vip', value: pass };
-          toggleAuthOverlay(false);
-          // Optional: Retry last message if needed
+    if (authSaveBtn) {
+      authSaveBtn.addEventListener('click', () => {
+        const activeTab = document.querySelector('.auth-tab.active').dataset.tab;
+        
+        if (activeTab === 'vip') {
+          const pass = vipInput.value.trim();
+          if (pass) {
+            userAuth = { type: 'vip', value: pass };
+            toggleAuthOverlay(false);
+          }
+        } else {
+          const key = apiKeyInput.value.trim();
+          if (key) {
+            userAuth = { type: 'apikey', value: key };
+            toggleAuthOverlay(false);
+          }
         }
-      } else {
-        const key = apiKeyInput.value.trim();
-        if (key) {
-          userAuth = { type: 'apikey', value: key };
-          toggleAuthOverlay(false);
-        }
-      }
-    });
+      });
+    }
 
     // 4. Chat Logic
     const appendMessage = (role, text) => {

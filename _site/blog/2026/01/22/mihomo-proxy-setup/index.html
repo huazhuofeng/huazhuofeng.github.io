@@ -26,6 +26,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
 
+<!-- Favicon -->
+<link rel="icon" href="/assets/img/logo/favicon.png" type="image/png">
+
 <!-- Prism.js for syntax highlighting -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
@@ -55,15 +58,19 @@
 
   </head>
   <body class="layout-post">
+    <!-- Dynamic Background -->
+    <div id="site-background"></div>
+
     <div class="site-shell">
       <header class="site-header">
   <nav class="site-nav">
-  <div class="nav-brand">
-    <a href="/" class="brand">
+  <a href="/" class="nav-brand">
+    <img src="/assets/img/logo/favicon.png" alt="Logo" class="brand-logo">
+    <div class="brand-text">
       <span class="brand-title">Huazhuo Feng</span>
       <span class="brand-subtitle">MD · PhD Candidate</span>
-    </a>
-  </div>
+    </div>
+  </a>
   
   <button class="mobile-nav-toggle" aria-label="Toggle navigation">
     <span class="bar"></span>
@@ -72,6 +79,10 @@
   </button>
 
   <div class="nav-links">
+    <div class="nav-search-wrapper">
+      <input type="text" id="nav-search-input" placeholder="Search..." autocomplete="off">
+      <ul id="nav-search-results" class="nav-search-results"></ul>
+    </div>
     <a href="/">Home</a>
     <a href="/blog/">Blog</a>
     <a href="/#publications">Publications</a>
@@ -428,14 +439,8 @@ proxy-select us
     </div>
   </div>
 
-  <!-- Search Widget -->
-  <div class="sidebar-card search-card">
-    <h4>Search Blog</h4>
-    <div class="search-wrapper">
-      <input type="text" id="search-input" placeholder="Type to search...">
-      <div id="results-container"></div>
-    </div>
-  </div>
+  <!-- Search Widget Removed -->
+
 
   <!-- Quick Links -->
   <div class="sidebar-card">
@@ -463,8 +468,11 @@ proxy-select us
       </div>
       <footer class="site-footer">
   <div class="footer-content">
-    <p>Huazhuo Feng · Academic Homepage & Blog</p>
-    <p>Built with Jekyll · Light/Dark Theme Toggle</p>
+    <p>Copyright © 2026 Huazhuo Feng. All Rights Reserved.</p>
+    <p>
+      Address: Guangzhou Medical University, Guangzhou, China · 
+      <a href="mailto:dotorfhz@163.com">Contact Me</a>
+    </p>
   </div>
 </footer>
 

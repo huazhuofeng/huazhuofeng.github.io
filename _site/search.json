@@ -2,26 +2,123 @@
   
     {
       "title"    : "Signal integration in reproducible single-cell workflows",
-      "category" : "",
+      "category" : "Blog",
       "tags"     : "single-cell, reproducibility, workflows",
       "url"      : "/blog/2026/01/22/signal-integration/",
       "date"     : "January 22, 2026"
-    } ,
+    },
   
     {
       "title"    : "Mihomo 代理配置与 Shell 集成指南",
-      "category" : "",
+      "category" : "Blog",
       "tags"     : "proxy, mihomo, shell, wsl",
       "url"      : "/blog/2026/01/22/mihomo-proxy-setup/",
       "date"     : "January 22, 2026"
-    } ,
+    },
   
     {
       "title"    : "Cursor Remote-SSH Server 手动部署工具",
-      "category" : "",
+      "category" : "Blog",
       "tags"     : "cursor, remote-ssh, deployment, proxy",
       "url"      : "/blog/2026/01/22/cursor-server-deploy/",
       "date"     : "January 22, 2026"
-    } 
+    },
+  
+  
+    {
+      "title"    : "Deficiency of Endothelial Piezo2 Impairs Pulmonary Vascular Angiogenesis and Predisposes Pulmonary Hypertension",
+      "category" : "Publication",
+      "tags"     : "Hypertension",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/39758000/",
+      "date"     : "2025"
+    },
+  
+    {
+      "title"    : "Bufei Huoxue Capsules in the Management of Convalescent COVID-19 Infection: Study Protocol for a Multicenter, Double-Blind, and Randomized Controlled Trial",
+      "category" : "Publication",
+      "tags"     : "Pulmonary Circulation",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/34394913/",
+      "date"     : "2021"
+    },
+  
+    {
+      "title"    : "Upregulation of Piezo1 Enhances the Intracellular Free Calcium in Pulmonary Arterial Smooth Muscle Cells From Idiopathic Pulmonary Arterial Hypertension Patients",
+      "category" : "Publication",
+      "tags"     : "Hypertension",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/33813851/",
+      "date"     : "2021"
+    },
+  
+    {
+      "title"    : "Echocardiographic Evaluation of Right Heart Failure Which Might Be Associated With DNA Damage Response in SU5416-Hypoxia Induced Pulmonary Hypertension Rat Model",
+      "category" : "Publication",
+      "tags"     : "Respiratory Research",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/37592245/",
+      "date"     : "2023"
+    },
+  
+    {
+      "title"    : "Aloperine Protects Pulmonary Hypertension via Triggering PPARγ Signaling and Inhibiting Calcium Regulatory Pathway in Pulmonary Arterial Smooth Muscle Cells",
+      "category" : "Publication",
+      "tags"     : "American Journal of Physiology-Cell Physiology",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/37661916/",
+      "date"     : "2023"
+    },
+  
+    {
+      "title"    : "Microbiome and Metabolome Dysbiosis of the Gut-Lung Axis in Pulmonary Hypertension",
+      "category" : "Publication",
+      "tags"     : "Microbiological Research",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/36202007/",
+      "date"     : "2022"
+    },
+  
+    {
+      "title"    : "Visibility, Wind Speed, and Dew Point Temperature Are Important Factors in SARS-CoV-2 Transmissibility",
+      "category" : "Publication",
+      "tags"     : "Pulmonary Circulation",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/35514785/",
+      "date"     : "2022"
+    },
+  
+    {
+      "title"    : "Altered Airway Microbiota Composition in Patients With Pulmonary Hypertension",
+      "category" : "Publication",
+      "tags"     : "Hypertension",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/32921193/",
+      "date"     : "2020"
+    },
+  
+    {
+      "title"    : "Nephrectomy and High-Salt Diet Inducing Pulmonary Hypertension and Kidney Damage by Increasing Ang II Concentration in Rats",
+      "category" : "Publication",
+      "tags"     : "Respiratory Research",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/39080603/",
+      "date"     : "2024"
+    },
+  
+    {
+      "title"    : "Topographic Location of Unisolated Pontine Infarction",
+      "category" : "Publication",
+      "tags"     : "BMC Neurology",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/31382915/",
+      "date"     : "2019"
+    },
+  
+    {
+      "title"    : "SARS-CoV-2 Spike Protein Receptor-Binding Domain Perturbates Intracellular Calcium Homeostasis and Impairs Pulmonary Vascular Endothelial Cells",
+      "category" : "Publication",
+      "tags"     : "Signal Transduction and Targeted Therapy",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/37452066/",
+      "date"     : "2023"
+    },
+  
+    {
+      "title"    : "Deficient FANCL Predisposes to Endothelial Damage: A New Therapeutic Target for Pulmonary Hypertension",
+      "category" : "Publication",
+      "tags"     : "American Journal of Respiratory and Critical Care Medicine",
+      "url"      : "https://pubmed.ncbi.nlm.nih.gov/40479584/",
+      "date"     : "2025"
+    }
   
 ]
